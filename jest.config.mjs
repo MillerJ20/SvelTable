@@ -71,18 +71,19 @@ export default {
   // ],
 
   // An array of file extensions your modules use
-  // moduleFileExtensions: [
-  //   "js",
-  //   "jsx",
-  //   "ts",
-  //   "tsx",
-  //   "json",
-  //   "node"
-  // ],
+  moduleFileExtensions: [
+    "js",
+    "jsx",
+    "ts",
+    "tsx",
+    "json",
+    "svelte"
+  ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
     "^\\$lib/(.*)": "<rootDir>/src/lib/$1",
+    "^\\$app(.*)$": "<rootDir>/.svelte-kit/runtime/app$1"
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -95,7 +96,7 @@ export default {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  // preset: undefined,
+  preset: 'ts-jest',
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -130,7 +131,7 @@ export default {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  setupFilesAfterEnv: ["<rootDir>/jest-setup.js"],
+  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,
@@ -139,7 +140,7 @@ export default {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "jsdom",
+  testEnvironment: "node",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -177,13 +178,13 @@ export default {
   transform: {
     "^.+\\.js$": "babel-jest",
     "^.+\\.svelte$": ["svelte-jester", { preprocess: true }],
+    "^.+\\.ts$": "ts-jest"
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "/node_modules/",
-  //   "\\.pnp\\.[^\\/]+$"
-  // ],
+  transformIgnorePatterns: [
+    "<rootDir>/node_modules/",
+  ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
@@ -192,7 +193,7 @@ export default {
   // verbose: undefined,
 
   // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
-  // watchPathIgnorePatterns: [],
+  // watchPathIgnorePatterns: []
 
   // Whether to use watchman for file crawling
   // watchman: true,

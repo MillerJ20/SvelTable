@@ -150,6 +150,7 @@
 </script>
 
 <div class="SvelTableContainer">
+  <h1>Hello World</h1>
 	<input type="text" placeholder="Search" bind:value={searchValue} on:input={search} />
 	<div class="SearchFilterContainer">
 		{#each keys as columnName, i}
